@@ -1,53 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+:root {
+	--body-bg: #123;
+	--nav-bg: rgb(69,92,115);
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: system-ui;
+}
+app-root, body, html {
+	height: 100%;
+	width: 100%;
 	margin: 0;
 	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+
+.my-app {
+	margin: 0;
+	color: white;
+	display: grid;
+	grid-template-columns: 15rem 1fr;
+	gap: 2rem;
+	height: 100%;
+} 
 body {
-	line-height: 1;
+	padding: 0;
+	margin: 0;
+	min-height: 100vh;
+	font-size: 1.25rem;
+	background: var(--body-bg);
 }
-ol, ul {
+
+header {
+	height: 100%;
+	background-color: var(--nav-bg);
+}
+nav {
+	position: sticky;
+	top: 0;
+	max-height: 100svh;
+	height: 100%;
+}
+.nav-list {
+	margin: 0;
+	padding: 0;
 	list-style: none;
+
+	display: grid;
+	gap: 2rem;
+	padding-block: 2rem;
 }
-blockquote, q {
-	quotes: none;
+
+.nav-list li {
+	padding: 1rem 2rem;
+	margin-left: 2rem;
+	border-radius: 100vw 0 0 100vw;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+.nav-list li.active {
+	view-transition-name: activeNavTab;
+	background: var(--body-bg);
+	position: relative;
+}
+::view-transition-group(activeNavTab) {
+	animation-duration: 0.5s;
+}
+
+.nav-list li.active::before,
+.nav-list li.active::after {
+	--border-radius: 1rem;
 	content: '';
-	content: none;
+	position: absolute;
+	width: var(--border-radius);
+	height: var(--border-radius);
+	right: 0;
+	background: var(--nav-bg);
 }
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+
+.nav-list li.active::before {
+	top: calc(var(--border-radius) *-1);
+	border-radius: 0 0 100vw 0;
+	box-shadow: 10px 10px 0 10px var(--body-bg);
 }
-.main {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+.nav-list li.active::after {
+	bottom: calc(var(--border-radius) *-1);
+	border-radius: 0 100vw 0 0;
+	box-shadow: 10px -10px 0 10px var(--body-bg);
+}
+.nav-list a {
+	color: white;
+	text-decoration: none;
 }
