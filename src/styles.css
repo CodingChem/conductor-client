@@ -58,7 +58,7 @@ nav {
 	margin-left: 2rem;
 	border-radius: 100vw 0 0 100vw;
 }
-.nav-list li.active {
+.nav-list li:has(a.active) {
 	view-transition-name: activeNavTab;
 	background: var(--body-bg);
 	position: relative;
@@ -67,8 +67,8 @@ nav {
 	animation-duration: 0.5s;
 }
 
-.nav-list li.active::before,
-.nav-list li.active::after {
+.nav-list li:has(a.active)::before,
+.nav-list li:has(a.active)::after {
 	--border-radius: 1rem;
 	content: '';
 	position: absolute;
@@ -78,12 +78,12 @@ nav {
 	background: var(--nav-bg);
 }
 
-.nav-list li.active::before {
+.nav-list li:has(a.active)::before {
 	top: calc(var(--border-radius) *-1);
 	border-radius: 0 0 100vw 0;
 	box-shadow: 10px 10px 0 10px var(--body-bg);
 }
-.nav-list li.active::after {
+.nav-list li:has(a.active)::after {
 	bottom: calc(var(--border-radius) *-1);
 	border-radius: 0 100vw 0 0;
 	box-shadow: 10px -10px 0 10px var(--body-bg);
